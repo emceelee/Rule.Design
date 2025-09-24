@@ -10,11 +10,11 @@ namespace Rule.Core.Test.Rules
 {
     public class TestObjectNegativeRule : TestObjectRuleBase
     {
-        public override IRuleResult<bool> Execute()
+        public override IRuleResult<bool> Execute(TestObject obj)
         {
             //Non-negative integer rule
             RuleResult<bool> result = new RuleResult<bool>();
-            result.Result = ObjectInstance.IntegerProperty < 0;
+            result.Result = obj.IntegerProperty < 0;
             result.Message = $"Negative? {result.Result}";
             return result;
         }

@@ -32,13 +32,13 @@ namespace Rule.Core.Test
     [TestClass]
     public static class TestSetup
     {
-        public static RuleRegistry<bool> BoolRegistrySimple = new RuleRegistry<bool>();
-        public static RuleRegistry<bool> BoolRegistryObject = new RuleRegistry<bool>();
+        public static RuleRegistry<TestObject, bool> BoolRegistrySimple = new RuleRegistry<TestObject, bool>();
+        public static RuleRegistry<TestObject, bool> BoolRegistryObject = new RuleRegistry<TestObject, bool>();
 
         [AssemblyInitialize]
         public static void SetupRegistry(TestContext context)
         {
-            BoolRegistrySimple.RegisterRule(RuleNames.R001, new Rule<bool>(() =>
+            BoolRegistrySimple.RegisterRule(RuleNames.R001, new Rule<TestObject, bool>((obj) =>
             {
                 RuleResult<bool> result = new RuleResult<bool>()
                 {
@@ -47,7 +47,7 @@ namespace Rule.Core.Test
                 };
                 return result;
             }));
-            BoolRegistrySimple.RegisterRule(RuleNames.R002, new Rule<bool>(() =>
+            BoolRegistrySimple.RegisterRule(RuleNames.R002, new Rule<TestObject, bool>((obj) =>
             {
                 RuleResult<bool> result = new RuleResult<bool>()
                 {

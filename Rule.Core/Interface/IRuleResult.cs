@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Rule.Core.Interface
 {
-    public interface IRuleResult<T>
+    //Defines the interface for a generic Rule Result, which includes a Result of Type TResult and string Message
+    public interface IRuleResult<TResult>
     {
-        T Result
+        TResult Result
         {
             get;
             set;

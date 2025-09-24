@@ -9,10 +9,11 @@ using Rule.Core.Interface;
 
 namespace Rule.Core
 {
-    public class RuleRegistry<T>
+    //RuleRegistry is a generic class allows mapping a strings to the corresponding Rule objects/types that execute on generic type T
+    public class RuleRegistry<T, TResult>
     {
         private Dictionary<string, Type> _rules = new Dictionary<string, Type>();
-        private Dictionary<string, IRule<T>> _ruleInstances = new Dictionary<string, IRule<T>>();
+        private Dictionary<string, IRule<T, TResult>> _ruleInstances = new Dictionary<string, IRule<T, TResult>>();
         private string _registerErrorMessage = "Error registering rule in RuleRegistry: ";
 
         public void RegisterRule(string key, Type type, bool singleInstance = false)
@@ -20,7 +21,7 @@ namespace Rule.Core
             //instantiate a single new rule instance to be shared across all executions
             if (singleInstance)
             {
-                IRule<T> rule = Activator.CreateInstance(type) as IRule<T>;
+                IRule<T, TResult> rule = Activator.CreateInstance(type) as IRule<T, TResult>;
                 RegisterRule(key, rule);
             }
             else
@@ -36,7 +37,7 @@ namespace Rule.Core
                 throw new ArgumentNullException($"{_registerErrorMessage} key is null. ");
             }
             //RuleRegistry can only register types of IRule
-            if (!type.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IRule<>)))
+            if (!type.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IRule<,>)))
             {
                 throw new ArgumentException(string.Format("{0} type {1} does not implement interface IRule<T>. ", _registerErrorMessage, type.ToString()));
             }
@@ -48,7 +49,7 @@ namespace Rule.Core
             _rules.Add(key, type);
         }
 
-        public void RegisterRule(string key, IRule<T> instance)
+        public void RegisterRule(string key, IRule<T, TResult> instance)
         {
             if (key == null)
             {
@@ -90,14 +91,14 @@ namespace Rule.Core
             return type;
         }
 
-        public IRule<T> RetrieveInstance(string key)
+        public IRule<T, TResult> RetrieveInstance(string key)
         {
             if (key == null)
             {
                 throw new ArgumentNullException($"{_registerErrorMessage} key is null. ");
             }
             
-            IRule<T> rule;
+            IRule<T, TResult> rule;
             _ruleInstances.TryGetValue(key, out rule);
 
             if(rule != null)
@@ -112,7 +113,7 @@ namespace Rule.Core
                 return null;
             }
 
-            rule = Activator.CreateInstance(type) as IRule<T>;
+            rule = Activator.CreateInstance(type) as IRule<T, TResult>;
 
             Debug.Assert(rule != null);
 

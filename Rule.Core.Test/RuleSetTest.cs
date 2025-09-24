@@ -14,7 +14,7 @@ namespace Rule.Core.Test
         [TestMethod]
         public void RuleSet_Simple()
         {
-            RuleSet<bool> rs = new RuleSet<bool>(TestSetup.BoolRegistrySimple);
+            RuleSet<TestObject, bool> rs = new RuleSet<TestObject, bool>(TestSetup.BoolRegistrySimple);
             rs.AddRule(RuleNames.R001); //True
             rs.AddRule(RuleNames.R002); //False
             rs.AddRule(RuleNames.R003); //True
@@ -22,7 +22,7 @@ namespace Rule.Core.Test
             rs.AddRule(RuleNames.R005); //True
             rs.AddRule(RuleNames.R006); //False
 
-            var results = rs.Execute();
+            var results = rs.Execute(new TestObject());
 
             IRuleResult<bool> result;
             result = results[RuleNames.R001];
@@ -47,7 +47,7 @@ namespace Rule.Core.Test
         [TestMethod]
         public void RuleSet_Object()
         {
-            RuleSet<bool> rs = new RuleSet<bool>(TestSetup.BoolRegistryObject);
+            RuleSet<TestObject, bool> rs = new RuleSet<TestObject, bool>(TestSetup.BoolRegistryObject);
             rs.AddRule(RuleNames.R001); //Negative Rule
             rs.AddRule(RuleNames.R002); //Even Rule
             rs.AddRule(RuleNames.R003); //Negative Rule
@@ -72,23 +72,7 @@ namespace Rule.Core.Test
             var validationMap = new Dictionary<TestObject, Dictionary<string, IRuleResult<bool>>>();
             validationList.ForEach((obj) =>
             {
-                var results = rs.Execute((rule) =>
-                {
-                    //cast IRule to specific rule instance and perform setup before rule execution
-                    var genericRule = rule as Rule<TestObject, bool>;
-
-                    if (genericRule != null)
-                    {
-                        genericRule.Object = obj;
-                    }
-
-                    var codedRule = rule as TestObjectRuleBase;
-
-                    if(codedRule != null)
-                    {
-                        codedRule.ObjectInstance = obj;
-                    }
-                });
+                var results = rs.Execute(obj);
 
                 validationMap.Add(obj, results);
             });

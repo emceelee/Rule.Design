@@ -10,11 +10,11 @@ namespace Rule.Core.Test.Rules
 {
     public class TestObjectEvenRule : TestObjectRuleBase
     {
-        public override IRuleResult<bool> Execute()
+        public override IRuleResult<bool> Execute(TestObject obj)
         {
             //Even integer
             RuleResult<bool> result = new RuleResult<bool>();
-            result.Result = ObjectInstance.IntegerProperty % 2 == 0;
+            result.Result = obj.IntegerProperty % 2 == 0;
             result.Message = $"Even? {result.Result}";
             return result;
         }

@@ -8,9 +8,9 @@ using Rule.Core.Interface;
 
 namespace Rule.Core.Test.Rules
 {
-    public class TrueRule : IRule<bool>
+    public class TrueRule : IRule<TestObject, bool>
     {
-        public IRuleResult<bool> Execute()
+        public IRuleResult<bool> Execute(TestObject obj)
         {
             RuleResult<bool> result = new RuleResult<bool>()
             {

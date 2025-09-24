@@ -10,11 +10,11 @@ namespace Rule.Core.Test.Rules
 {
     public class TestObjectOddRule : TestObjectRuleBase
     {
-        public override IRuleResult<bool> Execute()
+        public override IRuleResult<bool> Execute(TestObject obj)
         {
             //Odd integer
             RuleResult<bool> result = new RuleResult<bool>();
-            result.Result = ObjectInstance.IntegerProperty % 2 != 0;
+            result.Result = obj.IntegerProperty % 2 != 0;
             result.Message = $"Odd? {result.Result}";
             return result;
         }

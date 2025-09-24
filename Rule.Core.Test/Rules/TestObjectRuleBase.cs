@@ -8,13 +8,11 @@ using Rule.Core.Interface;
 
 namespace Rule.Core.Test.Rules
 {
-    public class TestObjectRuleBase : IRule<bool>
+    public class TestObjectRuleBase : IRule<TestObject, bool>
     {
-        public TestObject ObjectInstance { get; set; }
-
-        public virtual IRuleResult<bool> Execute()
+        public virtual IRuleResult<bool> Execute(TestObject obj)
         {
-            return new TrueRule().Execute();
+            return new TrueRule().Execute(obj);
         }
     }
 }

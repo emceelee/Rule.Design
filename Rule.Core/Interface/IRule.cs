@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Rule.Core.Interface
 {
-    public interface IRule<T>
+    //Defines the interface for a generic Rule to execute on type T, which when executed, returns an IRuleResult of type TResult
+    public interface IRule<T, TResult>
     {
-        IRuleResult<T> Execute();
+        IRuleResult<TResult> Execute(T obj);
     }
 }

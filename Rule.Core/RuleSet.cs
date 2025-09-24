@@ -8,18 +8,18 @@ using Rule.Core.Interface;
 
 namespace Rule.Core
 {
-    public class RuleSet<T>
+    public class RuleSet<T, TResult>
     {
-        private RuleRegistry<T> _registry;
+        private RuleRegistry<T, TResult> _registry;
         private List<string> _rules = new List<string>();
         private string _addErrorMessage = "Error adding rule to RuleSet: ";
 
-        public RuleSet(RuleRegistry<T> registry)
+        public RuleSet(RuleRegistry<T, TResult> registry)
         {
             _registry = registry;
         }
 
-        public RuleRegistry<T> Registry
+        public RuleRegistry<T, TResult> Registry
         {
             get
             {
@@ -45,21 +45,14 @@ namespace Rule.Core
             _rules.Add(key);
         }
 
-        public Dictionary<string, IRuleResult<T>> Execute()
+        public Dictionary<string, IRuleResult<TResult>> Execute(T obj)
         {
-            return Execute(null);
-        }
-
-        public Dictionary<string, IRuleResult<T>> Execute(Action<IRule<T>> setupAction)
-        {
-            var results = new Dictionary<string, IRuleResult<T>>();
+            var results = new Dictionary<string, IRuleResult<TResult>>();
             _rules.ForEach(key =>
             {
-                IRule<T> rule = Registry.RetrieveInstance(key);
-                //Allow consumers to pass in actions to configure rules post-instantiation pre-execution
-                setupAction?.Invoke(rule);
+                IRule<T, TResult> rule = Registry.RetrieveInstance(key);
 
-                results.Add(key, rule.Execute());
+                results.Add(key, rule.Execute(obj));
             });
 
             return results;
