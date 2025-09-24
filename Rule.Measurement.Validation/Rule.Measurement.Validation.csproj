@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Rule.Core\Rule.Core.csproj" />
-    <ProjectReference Include="..\Rules.Measurement.DataObject\Rules.Measurement.DataObject.csproj" />
+    <ProjectReference Include="..\Rule.Measurement.DataObject\Rule.Measurement.DataObject.csproj" />
   </ItemGroup>
 
 </Project>

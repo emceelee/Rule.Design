@@ -1,4 +1,4 @@
-﻿using Rules.Measurement.DataObject;
+﻿using Rule.Measurement.DataObject;
 using System;
 using System.Collections.Generic;
 using System.Text;

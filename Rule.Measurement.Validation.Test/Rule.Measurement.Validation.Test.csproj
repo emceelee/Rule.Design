@@ -60,13 +60,13 @@
       <Project>{9F0CA392-F120-4414-9D60-CFAC99103F4B}</Project>
       <Name>Rule.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Rule.Measurement.DataObject\Rule.Measurement.DataObject.csproj">
+      <Project>{ea2a5092-ba9a-4749-8c87-0ea9dd8ecc51}</Project>
+      <Name>Rule.Measurement.DataObject</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Rule.Measurement.Validation\Rule.Measurement.Validation.csproj">
       <Project>{37c7d9d0-1f36-42a5-8ffe-291d97ef164b}</Project>
       <Name>Rule.Measurement.Validation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Rules.Measurement.DataObject\Rules.Measurement.DataObject.csproj">
-      <Project>{A91193B0-F60C-4E93-83DC-36A40DCA9049}</Project>
-      <Name>Rules.Measurement.DataObject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

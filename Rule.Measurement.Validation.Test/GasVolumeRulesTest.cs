@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rule.Measurement.Validation.Rules.GasVolume;
-using Rules.Measurement.DataObject;
+using Rule.Measurement.DataObject;
 using System;
 
 namespace Rule.Measurement.Validation.Test

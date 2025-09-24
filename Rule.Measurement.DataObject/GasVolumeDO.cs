@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Rules.Measurement.DataObject
+namespace Rule.Measurement.DataObject
 {
     public class GasVolumeDO
     {

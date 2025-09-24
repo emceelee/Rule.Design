@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Rules.Measurement.DataObject
+namespace Rule.Measurement.DataObject
 {
     public enum UnitTimeCode
     {
