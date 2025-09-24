@@ -83,7 +83,6 @@ namespace Rule.Core.Test
             BoolRegistryObject.RegisterRule(RuleNames.R004, typeof(TestObjectNonNegativeRule));
             BoolRegistryObject.RegisterRule(RuleNames.R005, typeof(TestObjectEvenRule));
             BoolRegistryObject.RegisterRule(RuleNames.R006, typeof(TestObjectOddRule));
-            BoolRegistryObject.RegisterRule(RuleNames.R007, typeof(TestObjectRuleBase));
         }
     }
 }

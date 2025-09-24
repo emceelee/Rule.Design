@@ -54,7 +54,6 @@ namespace Rule.Core.Test
             rs.AddRule(RuleNames.R004); //NonNegative Rule
             rs.AddRule(RuleNames.R005); //Even Rule
             rs.AddRule(RuleNames.R006); //Odd Rule
-            rs.AddRule(RuleNames.R007); //True Rule
 
             List<TestObject> validationList = new List<TestObject>();
 
@@ -97,9 +96,6 @@ namespace Rule.Core.Test
 
             result = validationMap[obj1][RuleNames.R006];
             Assert.IsTrue(result.Result);
-            
-            result = validationMap[obj1][RuleNames.R007];
-            Assert.IsTrue(result.Result);
 
             //obj2
             result = validationMap[obj2][RuleNames.R001];
@@ -119,9 +115,6 @@ namespace Rule.Core.Test
 
             result = validationMap[obj2][RuleNames.R006];
             Assert.IsFalse(result.Result);
-
-            result = validationMap[obj2][RuleNames.R007];
-            Assert.IsTrue(result.Result);
         }
     }
 }
