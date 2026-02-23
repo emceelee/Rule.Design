@@ -6,8 +6,8 @@ namespace Rule.Measurement.DataObject
     {
         public string Meter { get; set; }
         public UnitTimeCode UnitTimeCode { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public DateTime StartDateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
         public double Volume { get; set; }
         public double Energy { get; set; }
         public GasVolumeUom GasVolumeUom { get; set; }

@@ -6,11 +6,13 @@ This project contains validation logic for the Rules.Measurement domain. It prov
 Contents and structure
 - Validators — Concrete validator classes for DOs (for example, GasVolumeDO validators) and other input models.
 - Rules — Reusable validation rule classes and helpers encapsulating common checks (range checks, required fields, unit compatibility).
+- Rules for each distinct DO should be added to their own distinct subfolder for the DO so rules for the same DO can be grouped together
 - Interfaces — Abstractions for validators and rules to allow DI and easy unit testing.
 - Tests — Unit tests that verify validator behavior (may be in a sibling test project).
 - Registration — DI registration helpers to wire validators into the application container.
 
 Conventions
+- Each DO should have a corresponding base abstract class rule which supplies the appropriate generic types.  Rules for each DO should inherit and implement these abstract classes
 - Keep validators small and focused; one validator per DO or input model.
 - Prefer composition of reusable rule components over duplicating logic.
 - Validators should be deterministic and side-effect free.
